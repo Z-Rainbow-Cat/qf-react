@@ -6,8 +6,7 @@ export default class home extends Component {
     return (
       <div>
             <NavBar title="首页"  leftShow={false}/>
-            <Slidebar bg="yellow" position="left"/>
-            
+            <Slidebar bg="yellow" position="right"/>
       </div>
     )
   }

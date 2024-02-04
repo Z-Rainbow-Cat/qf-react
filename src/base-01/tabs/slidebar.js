@@ -1,10 +1,23 @@
 import React from 'react'
-// import PropTypes from "prop-types"
+import PropTypes from "prop-types"
 export default function slidebar(props) {
     let { bg, position } = props
+    let obj = {
+        backgroundColor:bg,
+        position:"fixed",
+        width:200,
+    }
+    let obj1 = {
+        left:0
+    }
+    let obj2 = {
+        right:0,
+    }
+
+    let styleObj = position==="left"?{...obj,...obj1}:{...obj,...obj2}
     return (
         <div>
-            <ol style={{backgroundColor:bg,textAlign:position}}>
+            <ol style={styleObj}>
                 <li>111</li>
                 <li>222</li>
                 <li>333</li>
@@ -17,4 +30,14 @@ export default function slidebar(props) {
             </ol>
         </div>
     )
+}
+// /、函数式组件设置默认值  和  类型
+slidebar.defaultProps = {
+    bg:"blue",
+    position:"left"
+}
+
+slidebar.propTypes = {
+    bg:PropTypes.string,
+    position:PropTypes.string
 }

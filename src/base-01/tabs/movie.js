@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios"
 import "../css/tabs.css"
 import NavBar from "./navbar"
+
 export default class movie extends Component {
     state = {
         movies:[],
@@ -50,5 +51,48 @@ export default class movie extends Component {
         this.setState({
             movies:[...list],
         })
+    }
+}
+
+// 、、优化   受控input   不需要备份数据
+
+export class NewMovie extends Component{
+    state = {
+        movies:[],
+        text:"",
+    }
+    constructor(){
+        super();
+        axios({
+            method:"get",
+            url:"https://m.maizuo.com/gateway?cityId=410100&ticketFlag=1&k=3764514",
+            headers:{
+                'X-Client-Info':'{"a":"3000","ch":"1002","v":"5.2.1","e":"1707029283475508714242049","bc":"410100"}',
+                'X-Host':'mall.film-ticket.cinema.list'
+            }
+        }).then(({data})=>{
+            this.setState({
+                movies:data.data.cinemas,
+            })
+        })
+    }
+    render(){
+        return (
+            <div>
+                <input value={this.state.text} onChange={(e)=>{
+                    this.setState({
+                        text:e.target.value,
+                    })
+                }}/>
+                {
+                    this.state.movies.filter((item)=>item.name.includes(this.state.text) || item.address.includes(this.state.text)).map((item)=>(
+                        <div key={item.cinemaId} className='info'>
+                            <div className='name'>{item.name}</div>
+                            <div className='address'>{item.address}</div>
+                        </div>
+                    ))
+                }
+            </div>
+        )
     }
 }
