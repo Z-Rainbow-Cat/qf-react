@@ -6,16 +6,17 @@ export default class navbar extends Component {
     static propTypes = {
         title:PropTypes.string,
         leftShow:PropTypes.bool,
+        event:PropTypes.func,
     }
     static defaultProps = {
         leftShow:true
     }
     render() {
-        let { title ,leftShow } = this.props ;
+        let { title ,leftShow,event } = this.props ;
         return (
             
         <div>
-            { leftShow ? <button>back</button> :""}
+            { leftShow ? <button onClick={()=>event()}>showslider</button> :""}
             <span>{title}</span>
         </div>
         )

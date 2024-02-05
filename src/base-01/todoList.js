@@ -17,15 +17,16 @@ export default class todoList extends Component {
                     id:3,
                     text:"333333",
                 }
-            ]
+            ],
+            title:"",
         }
     }
-    myInput = React.createRef();
+    // myInput = React.createRef();
     render() {
         return (
         <div>
             <div>
-                <input ref={this.myInput} />
+                <input value={this.state.title} onChange={(e)=>this.inputChange(e)}/>
                 <button onClick={()=>this.addTodo()}>添加</button>
             </div>
 
@@ -56,10 +57,21 @@ export default class todoList extends Component {
 
     addTodo = () =>{
         this.setState({
-            todoList:[...this.state.todoList,{id:this.state.todoList.length + 1,text:this.myInput.current.value}]
+            todoList:[...this.state.todoList,{id:this.state.todoList.length + 1,text:this.state.title}],
+            title:""
         })
 
-        this.myInput.current.value = "" ;
+        // this.myInput.current.value = "" ;
+
+        this.setState({
+            title:""
+        })
+    }
+
+    inputChange = (e) =>{
+        this.setState({
+            title:e.target.value
+        })
     }
 
     deleteTodo(uid){
