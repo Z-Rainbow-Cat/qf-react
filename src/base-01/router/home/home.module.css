@@ -1,0 +1,25 @@
+#home2{
+    color:yellow;
+}
+.home ul{
+    list-style-type: none;
+    list-style: none;
+    padding:0;
+    margin:0;
+    top:0;
+    position:fixed;
+    left:0;
+    right:0;
+    height:50px;
+    display: flex;
+    align-items: center;
+}
+.home ul li{
+    list-style: none;
+    flex-grow: 1;
+    text-align: center;
+
+}
+.tabbar-active{
+    color:blue;
+}
